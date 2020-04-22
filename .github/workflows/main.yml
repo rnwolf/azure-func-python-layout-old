@@ -10,6 +10,12 @@ on:
   pull_request:
     branches: [ master ]
 
+# Notes on how to set ENV vars for multiple jobs. https://github.com/actions/starter-workflows/issues/68
+env:
+  APP_NAME: rnwolfapp2
+  APP_LOCATION: __app__
+  PYTHON_VERSION: "3.7"
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   lint:
@@ -20,7 +26,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v1
       with:
-        python-version: "3.7"
+        python-version: ${{ env.PYTHON_VERSION }}
     - uses: actions/cache@v1
       with:
         path: ~/.cache/pip
@@ -31,8 +37,11 @@ jobs:
       run: ls -l
     - name: Install tools
       run: |
+        # Please change your directory for pip in pushd
+        pushd ${{ env.APP_LOCATION }}
         python -m pip install --upgrade pip
         python -m pip install -r dev-requirements.txt
+        popd
     - run: black --check .
 
   deploy:
@@ -40,10 +49,7 @@ jobs:
     if: github.event_name == 'push' && github.repository == ' rnwolf/multifunclayout ' && github.ref == 'refs/heads/master'
     needs: [lint]
     runs-on: ubuntu-18.04
-    env:
-      APP_NAME: rnwolfapp2
-      APP_LOCATION: __app__
-      PYTHON_VERSION: "3.7"
+
 
     steps:
     - uses: actions/checkout@v1
