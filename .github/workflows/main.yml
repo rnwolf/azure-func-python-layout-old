@@ -46,10 +46,8 @@ jobs:
 
   deploy:
 
-    if: github.event_name == 'push' && github.repository == ' rnwolf/multifunclayout ' && github.ref == 'refs/heads/master'
     needs: [lint]
     runs-on: ubuntu-18.04
-
 
     steps:
     - uses: actions/checkout@v1
