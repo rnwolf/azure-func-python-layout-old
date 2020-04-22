@@ -37,11 +37,9 @@ jobs:
       run: ls -l
     - name: Install tools
       run: |
-        # Please change your directory for pip in pushd
-        pushd ${{ env.APP_LOCATION }}
         python -m pip install --upgrade pip
         python -m pip install -r dev-requirements.txt
-        popd
+    - run: mypy --config-file=mypy.ini __app__
     - run: black --check .
 
   deploy:
