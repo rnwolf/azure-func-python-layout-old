@@ -6,3 +6,12 @@ importlib_resources
 pip-tools
 pytest
 mypy
+pytest-cov
+pytest-asyncio
+safety
+flake8
+flake8-docstrings
+flake8-bandit
+flake8-bugbear
+flake8-deprecated
+flake8-executable
