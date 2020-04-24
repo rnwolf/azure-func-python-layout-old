@@ -1,5 +1,4 @@
 [flake8]
-ignore = S101 # Asset detected. Bad in production, but required for testing.
 exclude =
     # No need to traverse our git directory
     .git,
@@ -10,3 +9,13 @@ exclude =
     # This virtualenv
    .venv 
 max-complexity = 10
+max-line-length = 80
+select = C,E,F,W,B,B950
+ignore = E203,
+        # E203 whitespace before ':' warnings, not Pep8 compliant. Black
+         E501,
+        # use Bugbear’s B950 warning instead of E501, as per Black recommend.
+         S101, 
+         # Asset detected. Bad in production, but required for testing.
+         W503 
+         # Black will break a line before a binary operator when splitting code
