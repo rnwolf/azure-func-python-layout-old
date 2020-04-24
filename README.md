@@ -4,7 +4,7 @@ I had some difficulty in getting the default Azure Functions working beyond the 
 
 This repo is my best attempt at creating an example of two Azure Functions, based on HTTP Triggers that depend on some common shared code, with some automated pytests.
 
-The layout is based on the Azure func templates and [feedback](https://github.com/microsoft/vscode-azurefunctions/issues/1970) by a [Brett Cannon(https://github.com/brettcannon) and [Anthony Chu](https://github.com/anthonychu).
+The layout is based on the Azure func templates and [feedback](https://github.com/microsoft/vscode-azurefunctions/issues/1970) by a [Brett Cannon](https://github.com/brettcannon) and [Anthony Chu](https://github.com/anthonychu).
 
 I wanted to ensure that everything works via the terminal command line and/or via the VS-Code GUI.
 
