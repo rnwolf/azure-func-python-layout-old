@@ -1,39 +1,33 @@
 # README
 
-This is an example of two Azure Functions, based on HTTP Triggers that depend on some common shared code.  It is structured so that you can run test pytests, via the terminal or via VS-Code.
+I had some difficulty in getting the default Azure Functions working beyond the most trival case, as at April 2020.  
 
-Download repo, and create a Python virtualenv in the root directory.
-Update pip and pip-tools.
+This repo is my best attempt at creating an example of two Azure Functions, based on HTTP Triggers that depend on some common shared code, with some automated pytests.
 
-See the tree outline below.
+The layout is based on the Azure func templates and [feedback](https://github.com/microsoft/vscode-azurefunctions/issues/1970) by a [Brett Cannon(https://github.com/brettcannon) and [Anthony Chu](https://github.com/anthonychu).
+
+I wanted to ensure that everything works via the terminal command line and/or via the VS-Code GUI.
+
+You should be able to download a zip of the repo, rename it, create a Python virtualenv in the root directory, update pip & install pip-tools, activate venv and then be ready to proceed on your own.
+
+There is a github workflow that will run some quality checks and deploy to Azure.
+You will need you to create/download a "publish profile" which must be added as Github repo secret in order for the workflow to deploy to Azure.
+
+The Update the dev-requirements.in and requirements.txt file with the python packages that you need/want in dev and production.
+Activate virtualenv and then generate ```pip-compile -r dev-requirements.in```  
+Install packages with ```pip install -r dev-requirements.txt```
+
+See the tree view of the essental files is outlined below.
 
 ```
 C:\Users\rnwol\workspace\multifunclayout
+├── .coverage
+├── .coveragerc
+├── .flake8
 ├── .git
-|  ├── config
-|  ├── description
-|  ├── HEAD
-|  ├── hooks
-|  |  ├── applypatch-msg.sample
-|  |  ├── commit-msg.sample
-|  |  ├── fsmonitor-watchman.sample
-|  |  ├── post-update.sample
-|  |  ├── pre-applypatch.sample
-|  |  ├── pre-commit.sample
-|  |  ├── pre-merge-commit.sample
-|  |  ├── pre-push.sample
-|  |  ├── pre-rebase.sample
-|  |  ├── pre-receive.sample
-|  |  ├── prepare-commit-msg.sample
-|  |  └── update.sample
-|  ├── info
-|  |  └── exclude
-|  ├── objects
-|  |  ├── info
-|  |  └── pack
-|  └── refs
-|     ├── heads
-|     └── tags
+├── .github
+|  └── workflows
+|     └── main.yml
 ├── .gitignore
 ├── .venv
 |  ├── Include
@@ -63,13 +57,18 @@ C:\Users\rnwol\workspace\multifunclayout
 |  ├── launch.json
 |  ├── settings.json
 |  └── tasks.json
+├── Create .venv pythonvirtual env here.txt
+├── dev-requirements.in
+├── dev-requirements.txt
 ├── LICENSE.md
+├── mypy.ini
 ├── pytest.ini
 ├── README.md
 ├── tests
 |  ├── testHttpTrigger1.http
 |  ├── testHttpTrigger2.http
 |  ├── test_HttpTrigger1.py
+|  ├── test_HttpTrigger2.py
 |  └── __init__.py
 └── __app__
    ├── .funcignore
@@ -80,8 +79,6 @@ C:\Users\rnwol\workspace\multifunclayout
    |  ├── settings.json
    |  └── tasks.json
    ├── conftest.py
-   ├── dev-requirements.in
-   ├── dev-requirements.txt
    ├── host.json
    ├── HttpTrigger1
    |  ├── function.json
@@ -90,10 +87,11 @@ C:\Users\rnwol\workspace\multifunclayout
    |  ├── function.json
    |  └── __init__.py
    ├── local.settings.json
+   ├── local.settings.SAMPLE.json
    ├── requirements.txt
    ├── sharedcode
    |  ├── my_helper_function.py
-   |  ├── __init__.py
-   |  └── __pycache__
+   |  └── __init__.py
    └── __init__.py
+
 ```
