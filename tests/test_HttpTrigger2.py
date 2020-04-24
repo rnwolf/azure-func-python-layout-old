@@ -1,8 +1,8 @@
-"""Test the HttpTrigger1 Azure function."""
-# tests/test_HttpTrigger1.py
+"""Test the HttpTrigger2 Azure function."""
+# tests/test_HttpTrigger2.py
 
 import azure.functions as func
-from __app__.HttpTrigger1 import main
+from __app__.HttpTrigger2 import main
 
 
 def test_func_for_user_names_via_params():

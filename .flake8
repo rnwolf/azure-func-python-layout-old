@@ -1,5 +1,5 @@
 [flake8]
-#ignore = D203
+ignore = S101 # Asset detected. Bad in production, but required for testing.
 exclude =
     # No need to traverse our git directory
     .git,

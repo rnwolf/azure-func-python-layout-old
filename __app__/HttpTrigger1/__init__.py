@@ -1,13 +1,12 @@
+"""An example Azure Function triggered by an HTTP get or post."""
 # __app__\HttpTrigger1\__init__.py
 import logging
-
 import azure.functions as func
-
-# from __app__.sharedcode.my_helper_function import hello
 from __app__.sharedcode import my_helper_function
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
+    """Deal with HttpTrigger1 event."""
     logging.info("Python HTTP trigger function processed a request.")
     logging.info(f"Run shared code function {my_helper_function.hello()}")
 
@@ -15,7 +14,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if not name:
         try:
             req_body = req.get_json()
-        except ValueError:
+        except AttributeError:
             pass
         else:
             name = req_body.get("name")
